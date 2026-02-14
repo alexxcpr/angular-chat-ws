@@ -1,0 +1,20 @@
+<form nz-form nzLayout="inline" [formGroup]="validateForm" (ngSubmit)="send()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Numele de utilizator este obligatoriu!">
+        <nz-input-wrapper>
+          <nz-icon nzInputPrefix nzType="user" />
+          <input formControlName="username" nz-input placeholder="Username" />
+        </nz-input-wrapper>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Mesajul este obligatoriu!">
+          <input formControlName="message" nz-input placeholder="Scrie un mesaj aici.." />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">Trimite</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>

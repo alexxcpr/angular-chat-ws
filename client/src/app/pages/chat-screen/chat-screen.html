@@ -18,9 +18,5 @@
         </li>
     </ul>
     
-    <form (ngSubmit)="send()">
-        <nz-input-search nzEnterButton="Trimite" (nzSearch)="onSearch($event)">
-            <input nz-input [(ngModel)]="draft" name="draft" placeholder="Scrie un mesaj aici.." nzSize="large" />
-        </nz-input-search>
-    </form>
+    <app-chat-form></app-chat-form>
 </div>
