@@ -1,18 +1,13 @@
-<ul>
-    <li *ngFor="let message of messages">
-        <!-- {{ message.text }} -->
-    </li>
-</ul>
-
-<form (ngSubmit)="send()">
-    <nz-input-search nzEnterButton="Trimite" (nzSearch)="onSearch($event)">
-        <input nz-input [(ngModel)]="draft" name="draft" placeholder="Scrie un mesaj aici.." nzSize="large" />
-    </nz-input-search>
-    <!-- <input 
-        [(ngModel)]="draft"
-        name="draft"
-        autocomplete="off"
-        placeholder="Scrie mesajul.."    
-    >
-    <button type="submit">Trimite</button> -->
-</form>
+<div class="chat-screen">
+    <ul>
+        <li *ngFor="let message of messages">
+            <!-- {{ message.text }} -->
+        </li>
+    </ul>
+    
+    <form (ngSubmit)="send()">
+        <nz-input-search nzEnterButton="Trimite" (nzSearch)="onSearch($event)">
+            <input nz-input [(ngModel)]="draft" name="draft" placeholder="Scrie un mesaj aici.." nzSize="large" />
+        </nz-input-search>
+    </form>
+</div>
