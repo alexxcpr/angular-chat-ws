@@ -5,11 +5,14 @@
 </ul>
 
 <form (ngSubmit)="send()">
-    <input 
+    <nz-input-search nzEnterButton="Trimite" (nzSearch)="onSearch($event)">
+        <input nz-input [(ngModel)]="draft" name="draft" placeholder="Scrie un mesaj aici.." nzSize="large" />
+    </nz-input-search>
+    <!-- <input 
         [(ngModel)]="draft"
         name="draft"
         autocomplete="off"
         placeholder="Scrie mesajul.."    
     >
-    <button type="submit">Trimite</button>
+    <button type="submit">Trimite</button> -->
 </form>
