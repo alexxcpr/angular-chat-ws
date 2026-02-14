@@ -6,6 +6,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { ChatMessage } from '../../models/chat-message.model';
 import { ChatSocket } from '../../core/services/chat-socket';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat-screen',
@@ -17,8 +18,19 @@ export class ChatScreen {
   // nevoie pentru html:
   messages: ChatMessage[] = []
   draft = '';
+  private messageSub?: Subscription;
 
   constructor(private chatSocket: ChatSocket) {}
+
+  ngOnInit(): void {
+    this.messageSub = this.chatSocket.onMessage().subscribe((chatMsg) => {
+      this.messages.push(chatMsg);
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.messageSub?.unsubscribe();
+  }
 
   send(): void{
     this.chatSocket.sendMessage(this.draft);
