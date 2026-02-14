@@ -5,6 +5,7 @@ import { NzInputModule, NzInputSearchEvent } from 'ng-zorro-antd/input';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { ChatMessage } from '../../models/chat-message.model';
+import { ChatSocket } from '../../core/services/chat-socket';
 
 @Component({
   selector: 'app-chat-screen',
@@ -16,10 +17,15 @@ export class ChatScreen {
   // nevoie pentru html:
   messages: ChatMessage[] = []
   draft = '';
+
+  constructor(private chatSocket: ChatSocket) {}
+
   send(): void{
-    console.log(`mesaj trimis: ${this.draft}`);
+    this.chatSocket.sendMessage(this.draft);
+    console.log(`mesaj trimis din client: ${this.draft}`);
     this.draft = '';
   }
+
   // message.text
   onSearch(event: NzInputSearchEvent): void {
     this.send();

@@ -6,7 +6,12 @@ import type { ChatMessage } from './models/chat-message.model';
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:4200',
+        methods: ['GET', 'POST']
+    }
+});
 
 io.on('connection', (socket: Socket) => {
     console.log(`utilizatorul ${socket.id} s-a conectat`);
@@ -14,7 +19,9 @@ io.on('connection', (socket: Socket) => {
         console.log(`utilizatorul ${socket.id} s-a deconectat`)
     })
     socket.on('chat_message', (msg: string) => {
+        console.log(`mesaj primit din client: ${msg}`)
         io.emit('chat_message', createAndReturnMessageObject(msg, socket))
+        console.log(`obiect trimis server->client`)
     })
 })
 
