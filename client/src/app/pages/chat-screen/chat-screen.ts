@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzInputModule, NzInputSearchEvent } from 'ng-zorro-antd/input';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class ChatScreen {
   // nevoie pentru html:
-  messages: ChatMessage[] = []
+  messages = signal<ChatMessage[]>([])
   draft = '';
   private messageSub?: Subscription;
 
@@ -24,7 +24,7 @@ export class ChatScreen {
 
   ngOnInit(): void {
     this.messageSub = this.chatSocket.onMessage().subscribe((chatMsg) => {
-      this.messages.push(chatMsg);
+      this.messages.update(list => [...list, chatMsg]);
     })
   }
 
@@ -38,7 +38,6 @@ export class ChatScreen {
     this.draft = '';
   }
 
-  // message.text
   onSearch(event: NzInputSearchEvent): void {
     this.send();
   }
