@@ -1,5 +1,5 @@
-<form nz-form nzLayout="inline" [formGroup]="validateForm" (ngSubmit)="send()">
-    <nz-form-item>
+<form class="chat-form" nz-form nzLayout="inline" [formGroup]="validateForm" (ngSubmit)="send()">
+    <nz-form-item class="username-item">
       <nz-form-control nzErrorTip="Numele de utilizator este obligatoriu!">
         <nz-input-wrapper>
           <nz-icon nzInputPrefix nzType="user" />
@@ -7,12 +7,12 @@
         </nz-input-wrapper>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item class="message-item">
       <nz-form-control nzErrorTip="Mesajul este obligatoriu!">
           <input formControlName="message" nz-input placeholder="Scrie un mesaj aici.." />
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item class="submit-item">
       <nz-form-control>
         <button nz-button nzType="primary" [disabled]="!validateForm.valid">Trimite</button>
       </nz-form-control>

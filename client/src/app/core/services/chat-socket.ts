@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { ChatMessage } from '../../models/chat-message.model';
 
@@ -8,13 +8,20 @@ import { ChatMessage } from '../../models/chat-message.model';
 })
 export class ChatSocket {
   private socket: Socket = io('http://localhost:3000');
+  private myUsername = '';
 
-  //metoda pentru trimitere mesaj (input din frontend trimis catre backend prin ws)
-  sendMessage(msg: string): void {
-    const msgTrimmed = msg.trim();
-    if (!msgTrimmed) return;
+  getMyUsername(): string {
+    return this.myUsername;
+  }
 
-    this.socket.emit('chat_message', msgTrimmed);
+  // Payload trimis catre backend pentru un mesaj de chat.
+  sendMessage(payload: { username: string; text: string }): void {
+    const username = payload.username.trim();
+    const text = payload.text.trim();
+    if (!username || !text) return;
+
+    this.myUsername = username;
+    this.socket.emit('chat_message', { username, text });
   }
 
   //functie care asculta evenimentul 'chat_message' si trimite obiectul ChatMessage notat ca payload catre Oservable

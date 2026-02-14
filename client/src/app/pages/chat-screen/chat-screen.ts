@@ -21,6 +21,10 @@ export class ChatScreen {
 
   constructor(private chatSocket: ChatSocket) {}
 
+  isMine(message: ChatMessage): boolean{
+    return message.username === this.chatSocket.getMyUsername();
+  }
+
   ngOnInit(): void {
     this.messageSub = this.chatSocket.onMessage().subscribe((chatMsg) => {
       this.messages.update(list => [...list, chatMsg]);

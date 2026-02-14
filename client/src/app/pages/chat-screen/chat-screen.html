@@ -1,19 +1,12 @@
 <div class="chat-screen">
-    <nz-card style="width:100%;">
-        <nz-card-meta nzTitle="userTestRender" nzDescription="mesajTestRender" [nzAvatar]="avatarTemplate" />
-    </nz-card>          
-      <ng-template #avatarTemplate>
-        <nz-avatar nzText="U" />
-    </ng-template>
-    
     <ul>
         <li *ngFor="let message of messages()">
             <nz-card [nzBodyStyle]="{ padding: '8px 12px' }" style="width:100%;">
                 <span class="timestamp" nzType="secondary">{{message.sentAt | date:'short'}}</span>
-                <nz-card-meta nzTitle="{{message.senderId}}" nzDescription="{{message.text}}" [nzAvatar]="avatarTemplate" />
+                <nz-card-meta nzTitle="{{message.username}}" nzDescription="{{message.text}}" [nzAvatar]="avatarTemplate" />
             </nz-card>          
               <ng-template #avatarTemplate>
-                <nz-avatar nzText="{{message.senderId.charAt(0).toUpperCase()}}" />
+                <nz-avatar nzText="{{message.username.charAt(0).toUpperCase()}}" />
             </ng-template>
         </li>
     </ul>

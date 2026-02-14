@@ -1,0 +1,44 @@
+.chat-form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.username-item {
+  width: 150px;
+}
+
+.message-item {
+  flex: 1;
+}
+
+.message-item input[nz-input] {
+  width: 100%;
+}
+
+.submit-item button {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .chat-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .username-item {
+    width: 100%;
+  }
+
+  .username-item,
+  .message-item,
+  .submit-item {
+    width: 100%;
+  }
+
+  .submit-item button {
+    width: 100%;
+  }
+}
+  

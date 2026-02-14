@@ -1,6 +1,6 @@
 export interface ChatMessage {
     id: string;
-    senderId: string;
+    username: string;
     text: string;
     sentAt: string; // ISO String
 }
