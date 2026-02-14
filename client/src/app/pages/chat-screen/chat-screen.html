@@ -8,7 +8,8 @@
     
     <ul>
         <li *ngFor="let message of messages()">
-            <nz-card style="width:100%;">
+            <nz-card [nzBodyStyle]="{ padding: '8px 12px' }" style="width:100%;">
+                <span class="timestamp" nzType="secondary">{{message.sentAt | date:'short'}}</span>
                 <nz-card-meta nzTitle="{{message.senderId}}" nzDescription="{{message.text}}" [nzAvatar]="avatarTemplate" />
             </nz-card>          
               <ng-template #avatarTemplate>

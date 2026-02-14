@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { NzInputModule, NzInputSearchEvent } from 'ng-zorro-antd/input';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { ChatMessage } from '../../models/chat-message.model';
 import { ChatSocket } from '../../core/services/chat-socket';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat-screen',
-  imports: [CommonModule, FormsModule, NzInputModule, NzAvatarModule, NzCardModule],
+  imports: [CommonModule, FormsModule, NzInputModule, NzAvatarModule, NzCardModule, NzTypographyModule],
   templateUrl: './chat-screen.html',
   styleUrl: './chat-screen.css',
 })
