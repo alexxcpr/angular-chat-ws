@@ -1,4 +1,4 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { ChatMessage } from '../../models/chat-message.model';
@@ -8,8 +8,6 @@ import { ChatMessage } from '../../models/chat-message.model';
 })
 export class ChatSocket {
   private socket: Socket = io('http://localhost:3000');
-
-  constructor (private ngZone: NgZone) {}
 
   //metoda pentru trimitere mesaj (input din frontend trimis catre backend prin ws)
   sendMessage(msg: string): void {
